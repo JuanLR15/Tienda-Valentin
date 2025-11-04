@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="esp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Valentin</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="top-bar" id="topBar">
+        <div class="user-display">
+            <span id="currentUser">No has iniciado sesión</span>
+            <button id="btnLoginHeader">Iniciar Sesión</button>
+            <button id="btnCerrarSesion" style="display: none;">Cerrar Sesión</button>
+        </div>
+    </div>
+    <div class="login-container" id="loginContainer">
+        <div class="login-form">
+            <h3>Iniciar Sesión</h3>
+            <div class="form-group">
+                <label>Nombre:</label>
+                <input type="text" id="loginNombre" placeholder="Ingresa tu nombre">
+            </div>
+            <div class="form-buttons">
+                <button id="btnIniciarSesion">Ingresar</button>
+            </div>
+            <div class="user-info" id="userInfo" style="display: none;">
+                <p>Bienvenido: <span id="userName"></span></p>
+                <p>Ingreso: <span id="loginTime"></span></p>
+            </div>
+        </div>
+    </div>
+    <section id="mainMenu" class="main-menu">
+        <div class="menu-content">
+            <h1 class="main-title">EXPRESALO CON AMOR C.A</h1>
+            <p class="menu-subtitle">Sistema de Gestión de Ventas</p>
+            <button id="btnIngresarSistema" class="btn-ingresar">INGRESAR AL SISTEMA</button>
+        </div>
+    </section>
+    <div class="welcome-overlay" id="welcomeOverlay" style="display: none;">
+        <div class="welcome-message">
+            <h2>¡Bienvenido!</h2>
+            <p>Ingresando al sistema de ventas</p>
+            <p>Tienda "Exprésalo con Amor"</p>
+            <div class="loading-bar">
+                <div class="loading-progress" id="loadingProgress"></div>
+            </div>
+        </div>
+    </div>
+    <section id="florForm" hidden>
+        <img src="./recursos/TiendaValentinLOGO.jpeg" alt="" style="width: 300px; height: 300px; margin-bottom: 20px;">
+        <h3>Flor: <span id="florForm_lblTipo"></span></h3>
+        
+        <div class="form-container">
+            <div class="form-group">
+            <label>Código:
+            <input type="text" id="florForm_inCodigo" required>
+            </label>
+            </div>
+            <div class="form-group">
+            <label>Envase:
+            <input type="text" id="florForm_inEnvase" placeholder="1=Pequeño 2=Mediano 3=Grande" required>
+            </label>
+            </div>
+            <div class="form-group">
+            <label>Costo:
+            <input type="number" id="florForm_inCosto" required>
+            </label>
+            </div>
+
+            <div class="form-group form-full-width" id="florForm_divTipo">
+            <label>Tipo de flor:
+            <input type="text" id="florForm_inTipo" placeholder="A = Artificial, N = Natural" required>
+            </label>
+            </div>
+            
+            <div class="form-group form-full-width" id="florForm_divExtra">
+            <label>Extra:
+            <input type="text" id="florForm_inExtra" placeholder="Si - No" required>
+            </label>
+            </div>
+            
+            <div class="form-buttons">
+                <button id="florForm_btnAceptarRamoFlores">Aceptar</button>
+                <button id="florForm_btnAceptarRamoFrutas">Aceptar</button>
+                <button id="florForm_btnCancelar">Cancelar</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="mainForm" style="display: none;">
+        <div class="main-content">
+            <div class="header-actions">
+                <button id="btnVolverMenu" class="btn-volver">Volver</button>
+                <h3>Tienda Valentin</h3>
+                <div style="min-width: 120px;"></div>
+            </div>
+            <table>
+                <thead>
+                    <th>Codigo</th>
+                    <th>Envase</th>
+                    <th>Costo</th>
+                    <th>Tipo</th>
+                    <th>Extra</th>
+                    <th>Descuento</th>
+                    <th>Incremento</th>
+                    <th>Precio Total</th>
+                </thead>
+                <tbody id="mainForm_dataFlores"></tbody>
+            </table>
+            <div class="divBotones">
+                <button id="mainForm_btnAgregarRamoFlores">+Ramo de Flores</button>
+                <button id="mainForm_btnAgregarRamoFrutas">+Ramo de Frutas</button>
+            </div>
+            <div class="results-section">
+                <h3>Resultados del dia</h3>
+                <div class="divSalida">
+                    <div class="resultado-item">
+                        <span>Monto total vendido:</span>
+                        <span id="mainForm_lblMontoTotalVendido"></span>
+                    </div>
+                    <div class="resultado-item">
+                        <span>Cantidad de flores Naturales:</span>
+                        <span id="mainForm_lblCantidadFloresNaturales"></span>
+                    </div>
+                    <div class="resultado-item envase-mediano">
+                        <span>Cantidad de flores con envase mediano:</span>
+                        <span id="mainForm_lblCantidadFloresEnvaseMediano"></span>
+                    </div>
+                    <div class="resultado-item">
+                        <span>Porcentaje de flores naturales medianas:</span>
+                        <span id="mainForm_lblPorcentajeFloresEnvaseMedianas"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="goodbye-overlay" id="goodbyeOverlay">
+        <div class="goodbye-message">
+            <h2>¡Gracias por visitarnos!</h2>
+            <p>Esperamos verte pronto</p>
+            <p>Tienda "Exprésalo con Amor"</p>
+        </div>
+    </div>
+
+    <script type="module">
+        import Cl_index from './dist/index.js';
+    </script>
+
+    <script>
+        class NavigationSystem {
+            constructor() {
+                this.currentUser = null;
+                this.loginTime = null;
+                this.init();
+            }
+
+            init() {
+                this.bindEvents();
+                this.checkExistingLogin();
+                this.showMainMenu();
+            }
+
+            bindEvents() {
+                document.getElementById('btnIngresarSistema').addEventListener('click', () => {
+                    this.showWelcomeScreen();
+                });
+                document.getElementById('btnVolverMenu').addEventListener('click', () => {
+                    this.showGoodbyeScreen();
+                });
+                document.getElementById('btnLoginHeader').addEventListener('click', () => {
+                    this.showLogin();
+                });
+                document.getElementById('btnIniciarSesion').addEventListener('click', () => {
+                    this.login();
+                });
+                document.getElementById('btnCerrarSesion').addEventListener('click', () => {
+                    this.logout();
+                });
+                document.getElementById('loginContainer').addEventListener('click', (e) => {
+                    if (e.target.id === 'loginContainer') {
+                        this.hideLogin();
+                    }
+                });
+            }
+
+            showMainMenu() {
+                document.getElementById('welcomeOverlay').style.display = 'none';
+                document.getElementById('goodbyeOverlay').style.display = 'none';
+                document.getElementById('mainForm').style.display = 'none';
+                document.getElementById('florForm').style.display = 'none';
+                
+                document.getElementById('mainMenu').style.display = 'flex';
+            }
+
+            showWelcomeScreen() {
+                const welcomeOverlay = document.getElementById('welcomeOverlay');
+                const loadingProgress = document.getElementById('loadingProgress');
+                document.getElementById('mainMenu').style.display = 'none';
+                
+                welcomeOverlay.style.display = 'flex';
+                welcomeOverlay.classList.remove('fade-out');
+                loadingProgress.style.width = '0%';
+                
+                setTimeout(() => {
+                    loadingProgress.style.width = '100%';
+                }, 100);
+                setTimeout(() => {
+                    welcomeOverlay.classList.add('fade-out');
+                    setTimeout(() => {
+                        welcomeOverlay.style.display = 'none';
+                        this.showSystem();
+                    }, 1000);
+                }, 5000);
+            }
+
+            showGoodbyeScreen() {
+                const goodbyeOverlay = document.getElementById('goodbyeOverlay');
+                document.getElementById('mainForm').style.display = 'none';
+                
+                goodbyeOverlay.style.display = 'flex';
+                goodbyeOverlay.classList.remove('fade-out');
+                
+                setTimeout(() => {
+                    goodbyeOverlay.classList.add('fade-out');
+                    setTimeout(() => {
+                        goodbyeOverlay.style.display = 'none';
+                        this.showMainMenu();
+                    }, 1000);
+                }, 3000);
+            }
+
+            showSystem() {
+                document.getElementById('welcomeOverlay').style.display = 'none';
+                document.getElementById('mainMenu').style.display = 'none';
+                document.getElementById('mainForm').style.display = 'block';
+                
+                if (typeof window.app === 'undefined') {
+                    import('./dist/index.js').then(module => {
+                        window.app = new module.default();
+                    }).catch(error => {
+                        console.log('Sistema principal cargado');
+                    });
+                }
+            }
+
+            showLogin() {
+                document.getElementById('loginContainer').style.display = 'flex';
+                document.getElementById('loginNombre').focus();
+            }
+
+            hideLogin() {
+                document.getElementById('loginContainer').style.display = 'none';
+            }
+
+            login() {
+                const nombre = document.getElementById('loginNombre').value.trim();
+                
+                if (!nombre) {
+                    alert('Por favor ingresa tu nombre');
+                    return;
+                }
+
+                this.currentUser = nombre;
+                this.loginTime = new Date();
+                
+                localStorage.setItem('currentUser', nombre);
+                localStorage.setItem('loginTime', this.loginTime.toISOString());
+                
+                this.updateUI();
+                this.hideLogin();
+                this.registrarIngreso();
+            }
+
+            logout() {
+                this.currentUser = null;
+                this.loginTime = null;
+              
+                localStorage.removeItem('currentUser');
+                localStorage.removeItem('loginTime');
+                
+                this.updateUI();
+                alert('Has cerrado sesión correctamente.');
+            }
+
+            checkExistingLogin() {
+                const savedUser = localStorage.getItem('currentUser');
+                const savedTime = localStorage.getItem('loginTime');
+                
+                if (savedUser && savedTime) {
+                    this.currentUser = savedUser;
+                    this.loginTime = new Date(savedTime);
+                    this.updateUI();
+                }
+            }
+
+            updateUI() {
+                const userDisplay = document.getElementById('currentUser');
+                const btnLoginHeader = document.getElementById('btnLoginHeader');
+                const btnCerrarSesion = document.getElementById('btnCerrarSesion');
+                const loginForm = document.querySelector('.login-form .form-group');
+                const userInfo = document.getElementById('userInfo');
+                const userNameSpan = document.getElementById('userName');
+                const loginTimeSpan = document.getElementById('loginTime');
+
+                if (this.currentUser) {
+                    userDisplay.textContent = `Usuario: ${this.currentUser}`;
+                    userNameSpan.textContent = this.currentUser;
+                    
+                    const options = { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric',
+                        hour: '2-digit', 
+                        minute: '2-digit',
+                        second: '2-digit'
+                    };
+                    loginTimeSpan.textContent = this.loginTime.toLocaleDateString('es-ES', options);
+                    
+                    btnLoginHeader.style.display = 'none';
+                    btnCerrarSesion.style.display = 'block';
+                    loginForm.style.display = 'none';
+                    userInfo.style.display = 'block';
+                    
+                } else {
+                    userDisplay.textContent = 'No has iniciado sesión';
+                    
+                    btnLoginHeader.style.display = 'block';
+                    btnCerrarSesion.style.display = 'none';
+                    loginForm.style.display = 'block';
+                    userInfo.style.display = 'none';
+                    document.getElementById('loginNombre').value = '';
+                }
+            }
+
+            registrarIngreso() {
+                const registro = {
+                    usuario: this.currentUser,
+                    fechaHora: this.loginTime.toISOString(),
+                    tipo: 'ingreso'
+                };
+
+                const registros = JSON.parse(localStorage.getItem('registrosIngresos') || '[]');
+                registros.push(registro);
+                localStorage.setItem('registrosIngresos', JSON.stringify(registros));
+
+                console.log('Registro de ingreso:', registro);
+                alert(`¡Bienvenido ${this.currentUser}! Has ingresado al sistema.`);
+            }
+
+            getRegistros() {
+                return JSON.parse(localStorage.getItem('registrosIngresos') || '[]');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('welcomeOverlay').style.display = 'none';
+        new NavigationSystem();
+        });
+    </script>
+</body>
+</html>

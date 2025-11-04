@@ -1,0 +1,771 @@
+/* styles.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: 
+        linear-gradient(135deg, rgba(255, 245, 245, 0.85) 0%, rgba(248, 244, 255, 0.85) 50%, rgba(240, 248, 255, 0.85) 100%),
+        url('./recursos/ValentinFONDO.jpg') center/cover no-repeat fixed;
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px; /* Espacio para la barra superior */
+}
+
+/* SISTEMA DE LOGIN */
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #ff66a3, #ff8ec0);
+    color: white;
+    padding: 10px 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.user-display {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#currentUser {
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+#btnLoginHeader, #btnCerrarSesion {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8em;
+    transition: all 0.3s ease;
+}
+
+#btnLoginHeader:hover, #btnCerrarSesion:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+#btnCerrarSesion {
+    background: rgba(255, 100, 100, 0.3) !important;
+    border-color: #ffcccc;
+}
+
+#btnCerrarSesion:hover {
+    background: rgba(255, 100, 100, 0.5) !important;
+}
+
+.login-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.login-form {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-form h3 {
+    color: #ff66a3;
+    margin-bottom: 20px;
+}
+
+.login-form .form-group {
+    margin: 20px 0;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1em;
+}
+
+.login-form button {
+    background: linear-gradient(135deg, #ff66a3, #ff3385);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    margin: 10px 5px;
+}
+
+.login-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 102, 163, 0.3);
+}
+
+.user-info {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #66cc99;
+}
+
+.user-info p {
+    margin: 8px 0;
+    color: #555;
+}
+
+/* MENÚ PRINCIPAL */
+.main-menu {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 248, 251, 0.95));
+    border: 3px solid #ff66a3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    text-align: center;
+}
+
+.menu-content {
+    max-width: 800px;
+    padding: 40px;
+}
+
+.main-title {
+    color: #ff66a3;
+    font-size: 3.5em;
+    font-weight: 800;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(255, 102, 163, 0.2);
+    line-height: 1.2;
+}
+
+.menu-subtitle {
+    color: #666;
+    font-size: 1.5em;
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+.btn-ingresar {
+    background: linear-gradient(135deg, #ff66a3, #ff3385);
+    color: white;
+    border: none;
+    padding: 20px 50px;
+    border-radius: 50px;
+    font-size: 1.5em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(255, 102, 163, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.btn-ingresar:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(255, 102, 163, 0.4);
+}
+
+/* HEADER CON BOTÓN VOLVER - ACTUALIZADO */
+.header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    width: 100%;
+    gap: 20px;
+}
+
+.header-actions h3 {
+    margin-bottom: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.btn-volver {
+    background: linear-gradient(135deg, #66cc99, #33cc76);
+    color: white;
+    border: none;
+    padding: 8px 16px; /* MÁS PEQUEÑO */
+    border-radius: 20px; /* MÁS REDONDEADO */
+    font-size: 0.85em; /* TEXTO MÁS PEQUEÑO */
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(102, 204, 153, 0.3);
+    white-space: nowrap;
+    min-width: 120px; /* ANCHO MÍNIMO */
+}
+
+.btn-volver:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 204, 153, 0.4);
+}
+
+/* MENSAJE DE BIENVENIDA */
+.welcome-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ff66a3, #66cc99);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+.welcome-overlay.fade-out {
+    opacity: 0;
+}
+
+.welcome-message {
+    background: white;
+    padding: 40px 60px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    border: 4px solid #ffebf3;
+    animation: pulse 2s infinite;
+}
+
+.welcome-message h2 {
+    color: #ff66a3;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.welcome-message p {
+    color: #666;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.loading-bar {
+    width: 200px;
+    height: 6px;
+    background: #f0f0f0;
+    border-radius: 3px;
+    margin: 20px auto 0;
+    overflow: hidden;
+}
+
+.loading-progress {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff66a3, #66cc99);
+    border-radius: 3px;
+    transition: width 5s linear;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* NUEVO: Contenedor principal centrado */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Estilos para las secciones principales */
+section {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 20px auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 2px solid #ffebf3;
+    max-width: 1200px;
+    width: 100%;
+}
+
+#florForm {
+    background: linear-gradient(135deg, #fff, #fff8fb);
+    border: 3px solid #ff66a3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* NUEVO: Contenedor para formularios en columnas */
+.form-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px 0;
+}
+
+/* NUEVO: Estilos para grupos de formulario en columnas */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    font-weight: 600;
+    color: #666;
+    font-size: 1em;
+    height: 100%;
+}
+
+/* NUEVO: Campos específicos que deben ocupar ambas columnas */
+.form-full-width {
+    grid-column: 1 / -1;
+}
+
+/* Encabezados */
+h3 {
+    color: #ff66a3;
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(255, 102, 163, 0.1);
+    position: relative;
+    width: 100%;
+}
+
+h3::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, #ff66a3, #66cc99);
+    border-radius: 2px;
+}
+
+/* Formularios */
+label {
+    display: block;
+    margin: 15px 0;
+    font-weight: 700;
+    color: #666;
+    font-size: 1.1em;
+}
+
+input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-top: 8px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    background: #fafafa;
+}
+
+input:focus {
+    outline: none;
+    border-color: #ff66a3;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(255, 102, 163, 0.1);
+    transform: translateY(-2px);
+}
+
+/* TABLA CENTRADA - CORREGIDO */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto; /* CAMBIADO: Centrado horizontal */
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+thead {
+    background: linear-gradient(135deg, #ff66a3, #ff8ec0);
+    color: white;
+}
+
+th {
+    padding: 18px 15px;
+    text-align: center; /* CAMBIADO: Centrado */
+    font-weight: 600;
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+tbody tr:hover {
+    background-color: #fff5f8;
+    transform: scale(1.01);
+}
+
+tbody td {
+    padding: 15px;
+    color: #555;
+    text-align: center; /* CAMBIADO: Centrado */
+}
+
+/* Botones */
+button {
+    padding: 12px 30px;
+    margin: 10px 15px 20px 0;
+    border: none;
+    border-radius: 12px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* NUEVO: Contenedor de botones del formulario */
+.form-buttons {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+#mainForm_btnAgregarRamoFlores {
+    background: linear-gradient(135deg, #ff66a3, #ff3385);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 102, 163, 0.3);
+}
+
+#mainForm_btnAgregarRamoFrutas {
+    background: linear-gradient(135deg, #66cc99, #33cc76);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 204, 153, 0.3);
+}
+
+#florForm_btnAceptarRamoFlores,
+#florForm_btnAceptarRamoFrutas {
+    background: linear-gradient(135deg, #66cc99, #33cc76);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 204, 153, 0.3);
+}
+
+#florForm_btnCancelar {
+    background: linear-gradient(135deg, #ff9999, #ff6666);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 102, 102, 0.3);
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: translateY(-1px);
+}
+
+/* Contenedor de botones CENTRADO */
+.divBotones {
+    text-align: center;
+    margin: 30px auto; /* CAMBIADO: Centrado */
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 15px;
+    border: 2px dashed #ddd;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Sección de resultados EN PARTE INFERIOR */
+.results-section {
+    margin-top: 40px;
+    width: 100%;
+}
+
+.divSalida {
+    background: linear-gradient(135deg, #f0f8ff, #f5f0ff);
+    padding: 25px;
+    border-radius: 15px;
+    border: 2px solid #ccddff;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.resultado-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    margin: 12px 0;
+    background: white;
+    border-radius: 12px;
+    border-left: 5px solid #66cc99;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.resultado-item:hover {
+    transform: translateX(5px);
+    border-left-color: #ff66a3;
+}
+
+.resultado-item span:first-child {
+    font-weight: 600;
+    color: #555;
+    font-size: 1.1em;
+}
+
+.resultado-item span:last-child {
+    font-weight: 700;
+    color: #ff66a3;
+    font-size: 1.2em;
+    background: #fff5f8;
+    padding: 8px 16px;
+    border-radius: 8px;
+    min-width: 120px;
+    text-align: center;
+}
+
+/* Estilo especial para el item de envase mediano */
+.envase-mediano {
+    border-left-color: #ffb366;
+}
+
+.envase-mediano span:last-child {
+    color: #ff8c00;
+    background: #fff8f0;
+}
+
+/* MENSAJE DE DESPEDIDA */
+.goodbye-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #66cc99, #ff66a3);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+.goodbye-overlay.fade-out {
+    opacity: 0;
+}
+
+.goodbye-message {
+    background: white;
+    padding: 50px 70px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    border: 4px solid #ffebf3;
+    animation: pulse 2s infinite;
+}
+
+.goodbye-message h2 {
+    color: #ff66a3;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.goodbye-message p {
+    color: #666;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+/* Efectos decorativos florales */
+body::before {
+    content: "🌸";
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 2em;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+body::after {
+    content: "💐";
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 2em;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+/* OCULTAR/MOSTRAR CAMPOS DE FORMULARIO */
+#florForm_divTipo,
+#florForm_divExtra,
+#florForm_btnAceptarRamoFlores,
+#florForm_btnAceptarRamoFrutas {
+    display: none;
+}
+
+/* NUEVO: Estilos para el mainForm centrado */
+#mainForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* RESPONSIVE PARA EL MENÚ PRINCIPAL */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .main-title {
+        font-size: 2.5em;
+    }
+    
+    .menu-subtitle {
+        font-size: 1.2em;
+    }
+    
+    .btn-ingresar {
+        padding: 15px 30px;
+        font-size: 1.2em;
+    }
+    
+    .header-actions {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .goodbye-message {
+        padding: 30px 40px;
+        margin: 20px;
+    }
+    
+    .goodbye-message h2 {
+        font-size: 2em;
+    }
+    
+    section {
+        padding: 20px;
+        margin: 10px auto;
+    }
+    
+    .form-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .form-full-width {
+        grid-column: 1;
+    }
+    
+    .form-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    table {
+        font-size: 0.9em;
+        width: 95%;
+    }
+    
+    th, td {
+        padding: 12px 8px;
+    }
+    
+    button {
+        padding: 12px 20px;
+        margin: 8px 10px 8px 0;
+        font-size: 0.9em;
+    }
+    
+    .resultado-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .resultado-item span:last-child {
+        min-width: auto;
+        width: 100%;
+    }
+    
+    .btn-volver {
+        padding: 6px 12px;
+        font-size: 0.8em;
+        min-width: 100px;
+    }
+}
+
+/* Transiciones para formularios */
+#florForm_divTipo,
+#florForm_divExtra {
+    transition: all 0.3s ease;
+}
+
+#florForm_divTipo:not([hidden]),
+#florForm_divExtra:not([hidden]) {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#florForm_btnAceptarRamoFlores,
+#florForm_btnAceptarRamoFrutas {
+    transition: all 0.3s ease;
+}
+
+#florForm_inTipo::placeholder,
+#florForm_inExtra::placeholder {
+    color: #999;
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+#florForm_lblTipo {
+    color: #ff66a3;
+    font-weight: bold;
+    text-transform: uppercase;
+}
